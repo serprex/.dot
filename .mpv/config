@@ -1,0 +1,7 @@
+ao=alsa
+vo=opengl,xv,drm
+alang=fr,en
+slang=fr,en
+fs=yes
+cache=16387
+af=scaletempo
