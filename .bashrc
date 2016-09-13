@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 source ~/.profile
 alias grep=grep\ --color=auto
 alias halt=poweroff
@@ -9,10 +9,10 @@ alias img="display -geometry +0+0 -sample '1680x1050>'"
 alias syu=pacman\ -Syu
 alias view=vim\ -R 
 alias page=/usr/share/vim/vim74/macros/less.sh
-shopt -s autocd cdspell dotglob extglob globstar no_empty_cmd_completion
+shopt -s autocd cdspell dotglob extglob globstar no_empty_cmd_completion histappend
 stty -ixon
 PS1=\\W
-if [ "$TERM" = "linux" ] 
+if test "$TERM" = "linux"
 	then echo -en "\e]P0222222"\
 		"\e]P1aa4444"\
 		"\e]P222bb55"\
