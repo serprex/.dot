@@ -5,10 +5,9 @@ alias halt=poweroff
 alias ls=ls\ --group-directories-first\ --color=auto
 alias myip=curl\ -s\ http://ifconfig.me
 alias pyserv=python\ -m\ http.server
-alias img="display -geometry +0+0 -sample '1680x1050>'"
 alias syu=pacman\ -Syu
 alias view=vim\ -R 
-alias page=/usr/share/vim/vim74/macros/less.sh
+alias page=/usr/share/vim/vim80/macros/less.sh
 shopt -s autocd cdspell dotglob extglob globstar no_empty_cmd_completion histappend
 stty -ixon
 PS1=\\W
