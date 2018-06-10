@@ -2,6 +2,7 @@
 source ~/.profile
 alias grep=grep\ --color=auto
 alias halt=poweroff
+alias standby=systemctl\ suspend
 alias ls=ls\ --group-directories-first\ --color=auto
 alias myip=curl\ -s\ http://ifconfig.me
 alias http=python\ -m\ http.server
@@ -11,7 +12,7 @@ alias page=/usr/share/vim/vim80/macros/less.sh
 shopt -s autocd cdspell dotglob extglob globstar no_empty_cmd_completion histappend
 stty -ixon
 PS1=\\W
-HISTIGNORE='halt:git c*'
+HISTIGNORE='halt:git co*: *'
 if test "$TERM" = "linux"
 	then echo -en "\e]P0222222"\
 		"\e]P1aa4444"\
