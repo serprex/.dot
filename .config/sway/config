@@ -45,7 +45,7 @@ input "5426:107:Razer_Razer_Abyssus_Essential" left_handed enabled
     bindsym $mod+Return exec $term
     bindsym $mod+q exec $term
 
-    bindsym $mod+a exec MOZ_ENABLE_WAYLAND=1 exec firefox
+    bindsym $mod+a exec GDK_BACKEND=wayland MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+d exec steam steam://open/minigameslist -console -no-browser
     bindsym $mod+Shift+a exec discord
 
@@ -189,9 +189,5 @@ include /etc/sway/config.d/*
 titlebar_border_thickness 0
 titlebar_padding 1
 
-# firefox notification workaround
-no_focus [app_id="firefox" title="^$"]
-for_window [app_id="firefox" title="^$"] border none, floating enable, move position 79 ppt 88 ppt
-assign [app_id="firefox" title="^$"] float
-
+exec mako
 exec $term
