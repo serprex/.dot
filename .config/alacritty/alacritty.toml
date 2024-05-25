@@ -1,3 +1,32 @@
+# Colors (Konsole's Dark Pastels)
+
+# Default colors
+[colors.primary]
+background = "#222020"
+foreground = '#D0C0C0'
+
+# Normal colors
+[colors.normal]
+black   = '#333333'
+red     = '#C06060'
+green   = '#60B080'
+yellow  = '#E0C080'
+blue    = '#8AB0DC'
+magenta = '#DC8CC3'
+cyan    = '#8CD0D3'
+white   = '#DCDCDC'
+
+# Bright colors
+[colors.bright]
+black   = '#808080'
+red     = '#FFA0A0'
+green   = '#72D5A3'
+yellow  = '#F0E0B0'
+blue    = '#94C0FF'
+magenta = '#EC93D3'
+cyan    = '#93E0E3'
+white   = '#FFFFFF'
+
 [cursor]
 style = "Beam"
 
