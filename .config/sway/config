@@ -1,14 +1,9 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
 # Read `man 5 sway` for a complete reference.
 
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-# Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
@@ -18,34 +13,33 @@ set $term alacritty
 
 ### Output configuration
 output * bg #000000 solid_color
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
+## Input configuration
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-input "5426:107:Razer_Razer_Abyssus_Essential" left_handed enabled
+input "5426:107:Razer_Razer_Abyssus_Essential" {
+    left_handed enabled
+    accel_profile "flat"
+}
+input "1133:49284:Logitech_G203_Prodigy_Gaming_Mouse" {
+    left_handed enabled
+    accel_profile "flat"
+}
+input "1390:331:ELECOM_ELECOM_OpticalMouse" {
+    accel_profile "flat"
+    pointer_accel -0.4
+}
+input "2362:628:PIXA3854:00_093A:0274_Touchpad" tap enabled
+input * xkb_options compose:ralt
 
 ### Key bindings
     bindsym $mod+Return exec $term
     bindsym $mod+q exec $term
 
-    bindsym $mod+a exec GDK_BACKEND=wayland MOZ_ENABLE_WAYLAND=1 firefox
+    bindsym $mod+a exec chromium --ozone-platform=wayland --enable-features=WebUIDarkMode --force-dark-mode
     bindsym $mod+d exec steam steam://open/minigameslist -console -no-browser
     bindsym $mod+Shift+a exec discord
 
@@ -64,6 +58,10 @@ input "5426:107:Razer_Razer_Abyssus_Essential" left_handed enabled
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaymsg exit
+
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 #
 # Moving around:
 #
@@ -166,6 +164,15 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+client.focused #111111 #222222 #aaaaaa #000000
+client.unfocused #111111 #222222 #555555 #000000
+client.focused_inactive #111111 #222222 #555555 #000000
+
+gaps inner 0
+gaps outer 0
+#smart_borders true
+smart_gaps true
+
 #
 # Status Bar:
 #
@@ -173,14 +180,14 @@ bindsym $mod+r mode "resize"
 bar {
     position top
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command "while :; do date +'%Y%m%d %H%M%S'; sleep 1; done"
+    status_command "while date +[$(cat /sys/class/power_supply/BAT1/capacity)%]' %Y%m%d %H%M%S';do sleep 1; done"
 
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        statusline #aaaaaa
+        background #111111
+        focused_workspace #111111 #111111 #aaaaaa
+        inactive_workspace #111111 #111111 #555555
+        active_workspace #111111 #111111 #555555
     }
 }
 
@@ -189,5 +196,6 @@ include /etc/sway/config.d/*
 titlebar_border_thickness 0
 titlebar_padding 1
 
-exec mako
 exec $term
+exec mako
+exec --no-startup-id /usr/lib/xdg-desktop-portal -r
